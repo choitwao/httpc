@@ -14,8 +14,13 @@ if __name__ == '__main__':
             print('You are not allowed to have -d and -f at the same time.')
             os._exit(1)
         if args.file is not None:
-            with open(args.file, mode="r") as f:
-                data = f.read()
+            data = ''
+            with open(args.file, mode='r') as f:
+                for line in f:
+                    if line:
+                        data += line.rstrip('\n') + '&'
+            if data[-1] == '&':
+                parameters = data.rstrip('&')
         elif args.data is not None:
             data = args.data
         else:
@@ -23,3 +28,6 @@ if __name__ == '__main__':
         response = request.post(args.URL, args.headers, data)
     if args.verbose:
         print(response)
+    if args.output:
+        with open('output.txt', mode='w+') as w:
+            w.write(response)

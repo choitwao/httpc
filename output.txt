@@ -1,0 +1,28 @@
+HTTP/1.1 200 OK
+Connection: close
+Server: gunicorn/19.9.0
+Date: Thu, 04 Oct 2018 03:33:44 GMT
+Content-Type: application/json
+Content-Length: 382
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Credentials: true
+Via: 1.1 vegur
+
+{
+  "args": {}, 
+  "data": "{\"hello\":\"It is me\"}", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Connection": "close", 
+    "Content-Length": "20", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Concordia-HTTP/1.0"
+  }, 
+  "json": {
+    "hello": "It is me"
+  }, 
+  "origin": "24.105.73.156", 
+  "url": "http://httpbin.org/post"
+}
