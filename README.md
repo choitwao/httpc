@@ -1,4 +1,4 @@
-# httpc
+# httpcs
 Implement HTTP sockets using python
 
 - GET/POST
