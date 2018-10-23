@@ -24,6 +24,7 @@ class Cli:
         main_parser.add_argument('-d',
                                  dest='directory',
                                  action='store',
+                                 default='httpf/',
                                  help='Specifies the directory that the server will use to read/write requested files. Default is the current directory when launching the application.')
         return main_parser
 

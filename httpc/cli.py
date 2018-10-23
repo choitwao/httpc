@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-from urllib.parse import urlparse
 
 class Cli:
 

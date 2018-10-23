@@ -1,5 +1,5 @@
-from cli import Cli
-from request import Request
+from httpc.cli import Cli
+from httpc.request import Request
 import os
 
 
@@ -29,5 +29,5 @@ if __name__ == '__main__':
     if args.verbose:
         print(response)
     if args.output:
-        with open('output.txt', mode='w+') as w:
+        with open('httpc/output.txt', mode='w+') as w:
             w.write(response)
