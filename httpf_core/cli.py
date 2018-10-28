@@ -5,8 +5,8 @@ class Cli:
     @staticmethod
     def create_parser():
         # create the main parser for CLI
-        main_parser = ArgumentParser(prog='httpf',
-                                     description='httpc is a simple file server.',
+        main_parser = ArgumentParser(prog='httpf_core',
+                                     description='httpc_core is a simple file server.',
                                      add_help=False,
                                      conflict_handler='resolve')
         # create a general template for GET and POST
@@ -24,7 +24,7 @@ class Cli:
         main_parser.add_argument('-d',
                                  dest='directory',
                                  action='store',
-                                 default='httpf/',
+                                 default='file/',
                                  help='Specifies the directory that the server will use to read/write requested files. Default is the current directory when launching the application.')
         return main_parser
 

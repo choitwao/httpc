@@ -1,5 +1,5 @@
-from httpf.cli import Cli
-from httpf.api import Api
+from httpf_core.cli import Cli
+from httpf_core.server import Server
 import os
 
 
@@ -11,5 +11,5 @@ if __name__ == '__main__':
         os.mkdir(args.directory)
     with open(args.directory + '/hey.txt', 'w+') as f:
         f.write('1')
-    api = Api()
-    api.httpfs(int(args.port), args.verbose)
+    s = Server(int(args.port), args.verbose, args.directory)
+    s.run()

@@ -5,8 +5,8 @@ class Cli:
     @staticmethod
     def create_parser():
         # create the main parser for CLI
-        command_parser = ArgumentParser(prog="httpc",
-                                        description="httpc is a curl-like application but supports HTTP protocol only")
+        command_parser = ArgumentParser(prog="httpc_core",
+                                        description="httpc_core is a curl-like application but supports HTTP protocol only")
         # create branches for GET and POST
         method_parsers = command_parser.add_subparsers(help='[command] help',
                                                        dest="subparser_name")
