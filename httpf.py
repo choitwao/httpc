@@ -9,7 +9,7 @@ if __name__ == '__main__':
     print(args)
     if not os.path.isdir(args.directory):
         os.mkdir(args.directory)
-    with open(args.directory + '/hey.txt', 'w+') as f:
+    with open(args.directory + '/test.txt', 'w+') as f:
         f.write('1')
     s = Server(int(args.port), args.verbose, args.directory)
     s.run()
