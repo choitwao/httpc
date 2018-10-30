@@ -49,6 +49,7 @@ class Request:
         request_line = "POST {} HTTP/1.0".format(request_uri)
         headers_line = ''.join('{}:{}\r\n'.format(k, v) for k, v in req_headers.items())
         request = '\r\n'.join((request_line, headers_line, data))
+        print(request)
         sock = socket.create_connection((host, port))
         sock.sendall(request.encode("UTF-8"))
         response_data = sock.recv(4096)

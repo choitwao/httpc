@@ -2,7 +2,7 @@ import socket
 import calendar
 import os
 import datetime
-import time
+
 
 class Server:
 
@@ -56,7 +56,6 @@ class Server:
             file_type = request['path'].split('/')[-1].split('.')[1]
             try:
                 content_type = self.mime_type[file_type]
-                print(content_type)
             except KeyError:
                 content_type = None
                 if self.verbose:
@@ -69,7 +68,7 @@ class Server:
                     if self.verbose:
                         print('Returning the content of ' + request['path'])
             else:
-                response = self.__response_line__('404', content='File type not supported.')
+                response = self.__response_line__('406', None, content='File type not supported.')
                 if self.verbose:
                     print(request['path'] + ' is not a supported file.')
             return response
@@ -80,7 +79,27 @@ class Server:
             return response
 
     def __post_request__(self, request):
-        return '2'
+        if request['path'] == self.directory:
+            response = self.__response_line__('405', None, content='Method not allowed.')
+        else:
+            file_type = request['path'].split('/')[-1].split('.')[1]
+            try:
+                content_type = self.mime_type[file_type]
+            except KeyError:
+                content_type = None
+                if self.verbose:
+                    print('Unsupported file type.')
+            if content_type is not None:
+                if not os.path.exists(request['path']):
+                    os.makedirs(os.path.dirname(request['path']))
+                with open(request['path'], 'w+') as f:
+                    f.write(request['data'])
+                response = self.__response_line__('200', content_type)
+            else:
+                response = self.__response_line__('406', content='File type not supported.')
+                if self.verbose:
+                    print(request['path'] + ' is not a supported file.')
+        return response
 
     def __parse_request__(self, request):
         request = request.split('\r\n')
@@ -95,8 +114,11 @@ class Server:
         # find and set header
         req['headers'] = dict()
         for row in request[1:]:
-            if len(row.split(':')) == 2:
+            if len(row.split(':')) == 2 and '"' not in row:
                 req['headers'][row.split(':')[0]] = row.split(':')[1]
+        # set data
+        if req['method'] == 'POST':
+            req['data'] = request[-1]
         return req
 
     def __response_line__(self, code, content_type, content_length='0', content=''):

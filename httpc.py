@@ -27,5 +27,5 @@ else:
 if args.verbose:
     print(response)
 if args.output:
-    with open('httpc_core/output.txt', mode='w+') as w:
+    with open('file/output.txt', mode='w+') as w:
         w.write(response)
