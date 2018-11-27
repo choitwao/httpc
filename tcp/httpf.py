@@ -1,7 +1,5 @@
-from httpf_core.cli import Cli
-from httpf_core.server import Server
-import os
-
+from tcp.httpf_core.cli import Cli
+from tcp.httpf_core.server import Server
 
 if __name__ == '__main__':
 

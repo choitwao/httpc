@@ -1,5 +1,5 @@
-from httpc_core.cli import Cli
-from httpc_core.request import Request
+from tcp.httpc_core.cli import Cli
+from tcp.httpc_core.request import Request
 import os
 
 
